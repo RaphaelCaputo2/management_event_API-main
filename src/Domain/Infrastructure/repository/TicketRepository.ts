@@ -12,6 +12,10 @@ export default class TicketRepository implements ITicketRepository {
   constructor() {
     this.ormRepository = AppDataSource.getRepository(Ticket);
   }
+  async listTickets(): Promise<Ticket[]> {
+    const ticketList = await this.ormRepository.find();
+    return ticketList;
+  }
   async findById(data: Omit<Ticket, 'id'>): Promise<Ticket> {
     const ticket = await this.ormRepository.findOne({
       where: { id: String(data) },

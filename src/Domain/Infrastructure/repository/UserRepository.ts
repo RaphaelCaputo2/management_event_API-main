@@ -42,4 +42,17 @@ export default class UserRepository implements IUserRepository {
     });
     return user;
   }
+  async changeUserRole(email: string, role: string): Promise<User> {
+    const user = await this.ormRepository.findOne({
+      where: {
+        email,
+      },
+    });
+    if (user) {
+      user.role = role;
+      const newUser = await this.ormRepository.save(user);
+      return newUser;
+    }
+    throw new HttpException(404, 'User not found');
+  }
 }

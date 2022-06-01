@@ -32,4 +32,10 @@ export default class EventRepository implements IEventRepository {
     await this.ormRepository.update(String(id), { stock: newStock });
     return event;
   }
+  public async findEventByName(name: string): Promise<Event> {
+    const event = await this.ormRepository.findOne({
+      where: { name: name },
+    });
+    return event;
+  }
 }

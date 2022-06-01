@@ -5,4 +5,5 @@ export default interface IUserRepository {
   list(): Promise<User[]>;
   login(email: string): Promise<User>;
   findByEmail(email: string): Promise<User>;
+  changeUserRole(email: string, role: string): Promise<User>;
 }
