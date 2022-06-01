@@ -15,4 +15,8 @@ export default class EventService {
     const eventList = await this.eventRepository.listEvents();
     return eventList;
   }
+  public async findByName(name: string): Promise<Event> {
+    const event = await this.eventRepository.findEventByName(name);
+    return event;
+  }
 }

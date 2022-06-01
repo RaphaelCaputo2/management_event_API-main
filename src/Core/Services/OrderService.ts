@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import Order from '../../Domain/Infrastructure/entities/Order';
+import Ticket from '../../Domain/Infrastructure/entities/Ticket';
 import IEventRepository from '../../Domain/Infrastructure/interfaceRepository/IEventRepository';
 import IOrderRepository from '../../Domain/Infrastructure/interfaceRepository/IOrderRepository';
 import ITicketRepository from '../../Domain/Infrastructure/interfaceRepository/ITicketRepository';
@@ -34,5 +35,9 @@ export default class OrderService {
       order.quantity,
     );
     return order;
+  }
+  public async listTickets(): Promise<Ticket[]> {
+    const orderList = await this.ticketRepository.listTickets();
+    return orderList;
   }
 }

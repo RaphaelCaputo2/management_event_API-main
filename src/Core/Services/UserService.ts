@@ -24,4 +24,8 @@ export default class UserService {
     const user = await this.userRepository.login(email);
     return user;
   }
+  public async changeUserRole(email: string, role: string): Promise<User> {
+    const user = await this.userRepository.changeUserRole(email, role);
+    return user;
+  }
 }
