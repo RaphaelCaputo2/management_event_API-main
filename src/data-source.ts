@@ -20,3 +20,4 @@ export const AppDataSource = new DataSource({
   migrations: ['src/Domain/Infrastructure/migrations/*.ts'],
   subscribers: [],
 });
+// test PR
