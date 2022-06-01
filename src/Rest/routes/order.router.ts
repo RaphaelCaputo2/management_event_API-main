@@ -15,5 +15,5 @@ orderRoutes
     orderController.create,
   )
   .get(Authorization.isAdmin, orderController.list);
-
+orderRoutes.get('/tickets', orderController.getTickets);
 export default orderRoutes;

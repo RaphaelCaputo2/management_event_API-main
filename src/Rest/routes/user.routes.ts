@@ -12,4 +12,6 @@ userRoutes
   .post(userModelValidate.validateMiddleware, userController.create)
   .get(Authorization.isSuperAdmin, userController.list);
 
+userRoutes.post('/role', Authorization.isSuperAdmin, userController.changeRole);
+
 export default userRoutes;

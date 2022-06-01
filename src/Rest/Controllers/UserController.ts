@@ -31,4 +31,16 @@ export default class UserController {
     });
     return response.status(200).json(mapper);
   }
+  async changeRole(request: Request, response: Response): Promise<Response> {
+    try {
+      const { email, role } = request.body;
+      const injectService = container.resolve(UserService);
+      await injectService.changeUserRole(email, role);
+      return response
+        .status(200)
+        .json({ message: `User ${email} role changed to ${role}` });
+    } catch (err) {
+      return response.status(err.statusCode).json({ message: err.message });
+    }
+  }
 }

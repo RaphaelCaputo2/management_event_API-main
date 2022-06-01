@@ -9,11 +9,7 @@ const paymentController = new PaymentController();
 
 paymentRoutes
   .route('/')
-  .post(
-    validateModel.validateMiddleware,
-    Authorization.isSuperAdmin,
-    paymentController.create,
-  )
+  .post(Authorization.isSuperAdmin, paymentController.create)
   .get(Authorization.isAuthenticated, paymentController.list);
 
 export default paymentRoutes;

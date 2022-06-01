@@ -16,5 +16,9 @@ eventRoutes
     eventController.create,
   )
   .get(eventController.listEvents);
-
+eventRoutes.post(
+  '/findByName',
+  Authorization.isAuthenticated,
+  eventController.findByName,
+);
 export default eventRoutes;

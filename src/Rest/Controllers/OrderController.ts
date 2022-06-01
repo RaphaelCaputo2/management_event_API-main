@@ -12,7 +12,7 @@ export default class OrderController {
       const injectService = container.resolve(OrderService);
       await injectService.validateStock(body);
       await injectService.createOrder(body);
-      return response.status(201).json();
+      return response.status(201).json({ message: 'Successfully order' });
     } catch (err) {
       return response.status(500).json({ message: err.message });
     }
@@ -22,5 +22,10 @@ export default class OrderController {
     const listedOrders = await injectService.listOrders();
     const orderDtoMapper = OrderDTO.getOrderDTO(listedOrders);
     return response.status(200).json(orderDtoMapper);
+  }
+  async getTickets(_request: Request, response: Response): Promise<Response> {
+    const injectService = container.resolve(OrderService);
+    const listedTickets = await injectService.listTickets();
+    return response.status(200).json(listedTickets);
   }
 }

@@ -31,4 +31,17 @@ export default class EventController {
     }));
     return response.status(200).json(eventDTO);
   }
+  async findByName(request: Request, response: Response): Promise<Response<IEventDTO>> {
+    try {
+      const { name } = request.body;
+      const eventService = container.resolve(EventService);
+      const event = await eventService.findByName(name.toLowerCase());
+      if (!event) {
+        return response.status(404).json({ message: 'Event not found' });
+      }
+      return response.status(200).json(event);
+    } catch (err) {
+      return response.status(404).json({ message: 'Event not found' });
+    }
+  }
 }
